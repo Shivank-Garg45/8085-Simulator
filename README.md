@@ -57,15 +57,10 @@ The simulator executes 8085 assembly programs and displays CPU registers, flags,
 ## Technologies
 
 - C
-
 - Raylib
-
 - GCC
-
 - Make
-
 - Git
-
 - GitHub
 
 # Run:
@@ -81,23 +76,36 @@ gcc gui/gui.c gui/gui_globals.c cpu.c memory.c instructions.c parser.c -o 8085_g
 
 ./8085_gui
 
-# Or use the Makefile:
+```
+## Build GUI Version
 
+- Build using the Makefile:
 make
-Example Assembly Program
+
+```
+
+# Example Assembly Program:
+
 MVI A, 5AH
+
 STA 2050H
+
 MVI A, 00H
+
 LDA 2050H
+
 MOV B, A
+
 HLT
 
 # After execution:
 
 A = 5A
+
 B = 5A
+
 Memory[2050H] = 5A
-GUI
+
 
 # The Raylib GUI provides:
 
