@@ -1,50 +1,43 @@
-# 8085 Simulator (Terminal Based)
+# 8085 Simulator
 
-This project is a **terminal-based Intel 8085 microprocessor simulator written in C**.
-It simulates the execution of 8085 assembly instructions and displays the internal CPU state such as registers, flags, and memory during program execution.
+An Intel 8085 microprocessor simulator written in C with both a **Terminal Interface** and a **Raylib Graphical Interface**.
 
-The simulator reads an assembly program from a file and executes it step-by-step, helping students understand how an **8085 microprocessor works internally**.
-
----
+The simulator executes 8085 assembly programs and displays CPU registers, flags, memory, and program execution step-by-step.
 
 ## Features
 
-* Simulation of **8085 CPU registers**
-* Simulation of **flag register**
-* **64KB memory simulation**
-* Support for **assembly instructions**
-* **Label support for jump instructions**
-* **Step-by-step execution mode**
-* **Memory viewing after program execution**
+- 8085 CPU simulation
 
----
+- 64KB memory simulation
 
-## CPU Registers
+- CPU registers: A, B, C, D, E, H, L
 
-The simulator supports the following registers:
+- Program Counter (PC)
 
-* A (Accumulator)
-* B, C
-* D, E
-* H, L
-* Program Counter (PC)
-* Stack Pointer (SP)
+- Stack Pointer (SP)
 
-### Flags
+- Flag simulation: Z, S, P, CY, AC
 
-* Zero (Z)
-* Sign (S)
-* Parity (P)
-* Carry (CY)
-* Auxiliary Carry (AC)
+- Assembly instruction parsing
 
----
+- Label support
+
+- Step-by-step execution
+
+- Memory viewer
+
+- Assembly program editor
+
+- Load, Run, Step, Reset and Stop controls
+
+- Raylib-based graphical interface
+
+- Terminal-based interface
 
 ## Project Structure
 
 ```
-8085-Simulator
-│
+8085-Simulator/
 ├── main.c
 ├── cpu.c
 ├── memory.c
@@ -52,98 +45,92 @@ The simulator supports the following registers:
 ├── parser.c
 ├── simulator.h
 ├── program.asm
+├── Makefile
+├── raylib_test.c
+├── gui/
+│   ├── gui.c
+│   └── gui_globals.c
+├── .gitignore
 └── README.md
 ```
 
-### File Description
+## Technologies
 
-**main.c**
-Entry point of the program. Initializes CPU and runs the simulator.
+- C
 
-**cpu.c**
-Handles CPU initialization, flag updates, and printing CPU state.
+- Raylib
 
-**memory.c**
-Implements the 64KB memory used by the simulator.
+- GCC
 
-**instructions.c**
-Contains implementation of 8085 instructions.
+- Make
 
-**parser.c**
-Parses assembly instructions and executes them.
+- Git
 
-**simulator.h**
-Contains structure definitions and function declarations.
+- GitHub
 
----
+# Run:
 
-## How to Compile
-
-Use **GCC** to compile the project.
-
-```
-gcc main.c cpu.c memory.c parser.c instructions.c -o sim
-```
-
----
-
-## How to Run
-
-### Linux / Mac
-
-```
 ./sim
-```
+Build GUI Version
 
-### Windows
+Make sure Raylib is installed.
 
-```
-sim.exe
-```
+gcc gui/gui.c gui/gui_globals.c cpu.c memory.c instructions.c parser.c -o 8085_gui $(pkg-config --cflags --libs raylib) -lm -lX11
 
----
+# Run:
 
-## Example Assembly Program
+./8085_gui
 
-Create a file named **program.asm**
+# Or use the Makefile:
 
-```
-MVI A, 05
-MVI B, 03
-ADD B
-STA 2000
+make
+Example Assembly Program
+MVI A, 5AH
+STA 2050H
+MVI A, 00H
+LDA 2050H
+MOV B, A
 HLT
-```
 
-This program adds two numbers and stores the result in memory.
+# After execution:
 
----
+A = 5A
+B = 5A
+Memory[2050H] = 5A
+GUI
 
-## Output Example
+# The Raylib GUI provides:
 
-```
-Executing Line 1: MVI A, 05
+- Assembly program display and editing
+- CPU register monitoring
+- Flag monitoring
+- Memory inspection
+- Program loading
+- Step-by-step execution
+- Program execution controls
+- Current instruction tracking
+- Learning Objectives
 
-================ CPU STATE ================
-A:05  B:00  C:00  D:00  E:00  H:00  L:00
-PC:0000  SP:FFFF
-FLAGS -> Z:0 S:0 P:1 CY:0 AC:0
-===========================================
-```
+# This project helps understand:
 
----
+- 8085 microprocessor architecture
+- Assembly language
+- CPU registers and flags
+- Memory operations
+- Instruction execution
+- Program flow and branching
+- Low-level system concepts
+- GUI programming with Raylib
+- Future Improvements
+- Syntax highlighting
+- Breakpoints
+- Improved error handling
+- Better memory visualization
+- Register editing
+- Instruction information panel
+- Execution speed control
+- More complete 8085 instruction support
+- CMake support
 
-## Purpose
-
-This project was created for learning and understanding:
-
-* Microprocessors
-* Assembly language
-* CPU instruction execution
-* Memory operations
-
----
-
-## Author
-
-**Shivank Garg**
+# Author
+Shivank Garg
