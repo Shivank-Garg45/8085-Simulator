@@ -1,0 +1,6 @@
+8085_gui
+raylib_test
+sim
+*.o
+*.exe
+build/
